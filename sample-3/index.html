@@ -54,7 +54,7 @@
           <p class="hero-place" data-fade><i class="ph ph-map-pin" aria-hidden="true"></i> NAS College Road, Meerut</p>
           <div class="hero-side" data-fade>
             <p class="lead">Home sample collection is available. Call reception to ask about tests, timing and availability.</p>
-            <div class="cta-row">
+            <div class="cta-row" data-hero-cta>
               <a class="btn btn-ink" href="tel:+917017503935" data-magnetic>
                 <span>Call reception</span>
                 <i class="ph ph-phone" aria-hidden="true"></i>
@@ -192,5 +192,14 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
   <script src="main.js" defer></script>
+  <script>
+    // Floating call bar appears once the hero buttons scroll out of view.
+    if ('IntersectionObserver' in window) {
+      document.documentElement.classList.add('has-io');
+      new IntersectionObserver(([e]) => {
+        document.documentElement.classList.toggle('show-call', !e.isIntersecting && e.boundingClientRect.top < 0);
+      }).observe(document.querySelector('[data-hero-cta]'));
+    }
+  </script>
 </body>
 </html>

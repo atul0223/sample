@@ -217,8 +217,8 @@ function buildHelix(scene, camera) {
       const aspect = w / h;
       if (aspect < 0.9) {
         // Phone: helix sits behind the copy, lifted into the top half of the hero.
-        camera.position.z = 19;
-        camera.position.y = -3.2;
+        camera.position.z = 29;
+        camera.position.y = -4.5;
       } else {
         camera.position.z = aspect > 1.4 ? 17 : 21;
         camera.position.y = 0;

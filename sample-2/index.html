@@ -57,7 +57,7 @@
           <p class="eyebrow">NAS College Road, Meerut</p>
           <h1 id="hero-title">Diagnostics,<br>brought to <em>your door.</em></h1>
           <p class="lead">Vardaan Healthcare &amp; Diagnostics offers home sample collection. Call reception to ask about tests and availability.</p>
-          <div class="cta-row">
+          <div class="cta-row" data-hero-cta>
             <a class="btn btn-primary" href="tel:+917017503935">
               <i class="ph-light ph-phone" aria-hidden="true"></i>
               <span>Call reception</span>
@@ -167,6 +167,13 @@
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
       }, { threshold: 0.18 });
       items.forEach(el => io.observe(el));
+
+      // Floating call bar appears once the hero buttons scroll out of view.
+      const heroCta = document.querySelector('[data-hero-cta]');
+      document.documentElement.classList.add('has-io');
+      new IntersectionObserver(([e]) => {
+        document.documentElement.classList.toggle('show-call', !e.isIntersecting && e.boundingClientRect.top < 0);
+      }).observe(heroCta);
     })();
   </script>
 </body>

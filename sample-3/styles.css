@@ -247,4 +247,6 @@ img { display: block; max-width: 100%; height: auto; }
     box-shadow: 0 14px 34px rgb(17 19 21 / .25);
   }
   .mobile-call i { font-size: 20px; color: #ff8a70; }
+  .has-io .mobile-call { transform: translateY(160%); transition: transform .5s var(--ease); }
+  .has-io.show-call .mobile-call { transform: none; }
 }
