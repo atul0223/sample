@@ -214,8 +214,15 @@ function buildHelix(scene, camera) {
       rim.color.copy(accent);
     },
     resize(w, h) {
-      // Keep the whole helix in frame on narrow, short stages.
-      camera.position.z = w / h < 0.9 ? 25 : w / h > 1.4 ? 17 : 21;
+      const aspect = w / h;
+      if (aspect < 0.9) {
+        // Phone: helix sits behind the copy, lifted into the top half of the hero.
+        camera.position.z = 19;
+        camera.position.y = -3.2;
+      } else {
+        camera.position.z = aspect > 1.4 ? 17 : 21;
+        camera.position.y = 0;
+      }
     },
     update(dt, t) {
       helix.rotation.y += dt * 0.32;

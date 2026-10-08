@@ -249,8 +249,15 @@ a { color: inherit; }
 /* Tablet */
 @media (max-width: 960px) {
   .header-nav { display: none; }
-  .hero-grid { grid-template-columns: 1fr; min-height: 0; gap: 0; }
-  .stage-helix { height: 420px; margin-top: 8px; }
+  /* Helix moves behind the hero copy so it is visible on first load. */
+  .hero { overflow: hidden; }
+  .hero-grid { grid-template-columns: 1fr; position: relative; min-height: calc(100dvh - 140px); align-items: end; }
+  .hero-copy { position: relative; z-index: 2; padding-bottom: 24px; }
+  .stage-helix { position: absolute; inset: -40px 0 0 0; height: auto; z-index: 1; }
+  .stage-helix::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, transparent 0%, transparent 30%, color-mix(in srgb, var(--bg) 70%, transparent) 52%, var(--bg) 78%);
+  }
   .collection { padding: 88px 0; }
   .collection-grid { grid-template-columns: 1fr; padding: 24px 28px 40px; gap: 8px; }
   .stage-vial { height: 340px; }
@@ -274,7 +281,6 @@ a { color: inherit; }
   .hero { padding: 40px 0 8px; }
   .lead { font-size: 17px; }
   .cta-row .btn { flex: 1 1 100%; }
-  .stage-helix { height: 340px; }
   .collection { padding: 64px 0; }
   .collection-grid { padding: 16px 20px 32px; }
   .stage-vial { height: 280px; }
